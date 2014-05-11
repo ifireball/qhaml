@@ -1,0 +1,115 @@
+%form.app-layout.app-layout-toolbar{:method => "post", 
+  :action => url("/action"), :target => "viewer"}
+  .app-layout-tools
+    .navbar.navbar-default.navbar-nocollapse
+      .container-fluid
+        .navbar-header
+          %a.navbar-brand.hidden-520(href="#") QHaml
+        %button.navbar-toggle.visible-440-block.hidden-else{:type=>:button, 
+          :data => {:toggle=>:tab, :target=>"#editor-narrow-nav"}}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        .navbar-form.navbar-right
+          .form-group
+            %button.form-control.btn.btn-default{:type=>:submit, 
+              :name => 'action', :value => 'evaluate', :title=>"Evaluate Code"}
+              %span.glyphicon.glyphicon-refresh
+              %span.hidden-640 Evaluate
+        %ul.nav.navbar-nav.navbar-left.collapse-noactive.hidden-360
+          %li.active
+            .fakea{:data=>{:target=>"#editor-page", :toggle=>"tab"}, :title=>"Edit page markup"}
+              %a(href="#") 
+                %span.glyphicon.glyphicon-file.visible-640-inline.hidden-else
+                %span.hidden-640 Page
+              != language_selector(:page)
+          %li
+            .fakea{:data=>{:target=>"#editor-script", :toggle=>"tab"}, :title=>"Edit page script"}
+              %a(href="#") 
+                %span.glyphicon.glyphicon-list-alt.visible-640-inline.hidden-else
+                %span.hidden-640 Script
+              != language_selector(:script)
+          %li
+            .fakea{:data=>{:target=>"#editor-style", :toggle=>"tab"}, :title=>"Edit page style"}
+              %a(href="#") 
+                %span.glyphicon.glyphicon-picture.visible-640-inline.hidden-else
+                %span.hidden-640 Style
+              != language_selector(:style)
+        %ul.nav.navbar-nav.navbar-right.collapse-noactive.hidden-440
+          %li
+            %a(href="#editor-load" data-toggle="tab" title="Save/Load")
+              %span.glyphicon.glyphicon-floppy-disk
+              %span.hidden-sm.hidden-xs.visible-360-inline Save/Load
+          %li
+            %a(href="#editor-insert" data-toggle="tab" title="Add")
+              %span.glyphicon.glyphicon-plus
+              %span.hidden-sm.hidden-xs.visible-360-inline Add
+          %li
+            %a(href="#editor-settings" data-toggle="tab" title="Settings")
+              %span.glyphicon.glyphicon-cog
+              %span.hidden-sm.hidden-xs.visible-360-inline Settings
+  .app-layout-content.tab-content
+    .tab-pane.active#editor-page
+      != main_editor(:page)
+    .tab-pane#editor-script
+      != main_editor(:script)
+    .tab-pane#editor-style
+      != main_editor(:style)
+    .tab-pane#editor-insert
+    .tab-pane.scrolled#editor-load
+      .container-fluid
+        .row
+          .col-sm-4
+            %h1 Save
+            %p Enter name to save current project
+            .form-group
+              %label(for="project-name") Project Name
+              %input.form-control(type="text" name="name" id="Project-name"
+                placeholder="Enter project name"){:value => @project[:name]}
+            .form-group
+              %button.btn.btn-primary(type="submit" name="action" value="save"
+                title="Save project") Save
+          .col-sm-8
+            %h1 Load
+            - if @user.saved_projects.empty?
+              %p.alert.alert-info No saved projects (save something).
+            - else 
+              %p Select project to load or use the "delete" button to delete an unneeded project.
+              %p.alert.alert-warning
+                %strong Warning!
+                Loading a project will discard unsaved changes to current project
+              %table.table.table-hover
+                %thead
+                  %tr
+                    %th Project Name
+                    %th Last Modified
+                    %th
+                %tbody
+                  - @user.saved_projects.each do |project|
+                    %tr
+                      %td
+                        != project_link(project)
+                      %td
+                        != project_link(project, date_format(project.updated_at))
+                      %td
+                        %button.btn.btn-danger.btn-xs(type="submit" name="action-delete"
+                          title="Delete Project: #{project.name}"){:value => project.id} Delete
+    .tab-pane#editor-settings
+    .tab-pane.scrolled#editor-narrow-nav
+      .container-fluid
+        %ul.nav.nav-pills.nav-stacked
+          %li.active
+            %a(href="#editor-page" data-toggle="tab")  Page
+          %li
+            %a(href="#editor-script" data-toggle="tab") Script
+          %li
+            %a(href="#editor-style" data-toggle="tab") Style
+          %li
+            %a(href="#editor-insert" data-toggle="tab") Add Contenct
+          %li
+            %a(href="#editor-load" data-toggle="tab") Save/Load
+          %li
+            %a(href="#editor-settings" data-toggle="tab") Settings
+= javascript_tag "editor" 
+

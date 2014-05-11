@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title QHaml Project
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1-beta1/jquery.min.js"}
+    %link{:rel => :stylesheet, :href => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"}
+    %script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"}
+    %link{:rel => :stylesheet, :href => url('/viewer/style') }
+    %script{:src => url('/viewer/script')}
+  %body
+    = yield
+
+

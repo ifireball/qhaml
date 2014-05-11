@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title QHtml Editor
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1-beta1/jquery.min.js"}
+    %link{:rel => "stylesheet", :href => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"}
+    %script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"}
+    %link{:rel => "stylesheet", :href => "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/codemirror.min.css"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/codemirror.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/keymap/vim.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/mode/xml/xml.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/mode/css/css.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/mode/htmlmixed/htmlmixed.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/mode/javascript/javascript.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/mode/ruby/ruby.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/mode/haml/haml.min.js"}
+    = stylesheet_tag 'style.css'
+  %body
+    = yield
+
+

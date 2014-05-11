@@ -1,0 +1,80 @@
+.app-layout {
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+	overflow: visible;
+}
+.scrolled {
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        position: absolute;
+	overflow: auto;
+}
+.app-layout-content,
+.app-layout-tools {
+	position: absolute;
+}
+.app-layout-splitter {
+	position: absolute;
+	overflow: hidden;
+	background-color: #F8F8F8;
+}
+.app-layout-splitter:hover {
+	background-color: #E7E7E7;
+}
+.app-layout-top > .app-layout-splitter, 
+.app-layout-bottom > .app-layout-splitter {
+	cursor: row-resize;
+}
+.app-layout-left > .app-layout-splitter, 
+.app-layout-right > .app-layout-splitter {
+	cursor: col-resize;
+}
+.app-layout-top > .app-layout-content,
+.app-layout-top > .app-layout-splitter,
+.app-layout-top > .app-layout-tools,
+.app-layout-bottom > .app-layout-content,
+.app-layout-bottom > .app-layout-splitter,
+.app-layout-bottom > .app-layout-tools {
+	left: 0px; right: 0px;
+}
+.app-layout-top > .app-layout-content  { top: 200px; bottom:   0px; }
+.app-layout-top > .app-layout-splitter { top: 194px; height:   6px; }
+.app-layout-top > .app-layout-tools    { top:   0px; height: 194px; }
+.app-layout-bottom > .app-layout-content  { top:      0px; bottom: 200px; }
+.app-layout-bottom > .app-layout-splitter { height:   6px; bottom: 194px; }
+.app-layout-bottom > .app-layout-tools    { height: 194px; bottom:   0px; }
+
+.app-layout-left > .app-layout-content,
+.app-layout-left > .app-layout-splitter,
+.app-layout-left > .app-layout-tools,
+.app-layout-right > .app-layout-content,
+.app-layout-right > .app-layout-splitter,
+.app-layout-right > .app-layout-tools {
+	top: 0px; bottom: 0px;
+}
+.app-layout-left > .app-layout-content  { left: 300px; right:   0px; }
+.app-layout-left > .app-layout-splitter { left: 294px; width:   6px; }
+.app-layout-left > .app-layout-tools    { left:   0px; width: 294px; }
+.app-layout-right > .app-layout-content  { left:    0px; right: 300px; }
+.app-layout-right > .app-layout-splitter { width:   6px; right: 294px; }
+.app-layout-right > .app-layout-tools    { width: 294px; right:   0px; }
+
+.app-layout-toolbar > .app-layout-content,
+.app-layout-toolbar > .app-layout-tools {
+	left: 0px; right: 0px;
+}
+.app-layout-toolbar > .app-layout-content  { 
+	top: 52px; 
+	bottom: 0px;
+}
+.app-layout-toolbar > .app-layout-tools { 
+	top: 0px; 
+	bottom: auto;
+	height: auto;
+	overflow: visible;
+}

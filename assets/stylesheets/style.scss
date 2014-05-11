@@ -1,0 +1,27 @@
+//=require app-layout
+//=require navbar-nocollapse
+
+.CodeMirror {
+  height: auto;
+  width: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+.main-editor {
+  font-family: monospace;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  resize: none;
+  border: none;
+  overflow: auto;
+  position: absolute;
+}
+
+

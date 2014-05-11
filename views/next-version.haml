@@ -1,0 +1,369 @@
+!!!
+%html
+  %head
+    %title Simple Bootstrap Page
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1-beta1/jquery.min.js"}
+    %link{:rel => "stylesheet", :href => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"}
+    %script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"}
+    :css
+      .app-layout {
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        position: absolute;
+        overflow: visible;
+      }
+      .scrolled {
+        overflow: auto;
+      }
+      .app-layout-content,
+      .app-layout-tools {
+        position: absolute;
+      }
+      .app-layout-splitter {
+        position: absolute;
+        overflow: hidden;
+        background-color: #F8F8F8;
+      }
+      .app-layout-splitter:hover {
+        background-color: #E7E7E7;
+      }
+      .app-layout-top > .app-layout-splitter, 
+      .app-layout-bottom > .app-layout-splitter {
+        cursor: row-resize;
+      }
+      .app-layout-left > .app-layout-splitter, 
+      .app-layout-right > .app-layout-splitter {
+        cursor: col-resize;
+      }
+      .app-layout-top > .app-layout-content,
+      .app-layout-top > .app-layout-splitter,
+      .app-layout-top > .app-layout-tools,
+      .app-layout-bottom > .app-layout-content,
+      .app-layout-bottom > .app-layout-splitter,
+      .app-layout-bottom > .app-layout-tools {
+        left: 0px; right: 0px;
+      }
+      .app-layout-top > .app-layout-content  { top: 200px; bottom:   0px; }
+      .app-layout-top > .app-layout-splitter { top: 194px; height:   6px; }
+      .app-layout-top > .app-layout-tools    { top:   0px; height: 194px; }
+      .app-layout-bottom > .app-layout-content  { top:      0px; bottom: 200px; }
+      .app-layout-bottom > .app-layout-splitter { height:   6px; bottom: 194px; }
+      .app-layout-bottom > .app-layout-tools    { height: 194px; bottom:   0px; }
+      
+      .app-layout-left > .app-layout-content,
+      .app-layout-left > .app-layout-splitter,
+      .app-layout-left > .app-layout-tools,
+      .app-layout-right > .app-layout-content,
+      .app-layout-right > .app-layout-splitter,
+      .app-layout-right > .app-layout-tools {
+        top: 0px; bottom: 0px;
+      }
+      .app-layout-left > .app-layout-content  { left: 300px; right:   0px; }
+      .app-layout-left > .app-layout-splitter { left: 294px; width:   6px; }
+      .app-layout-left > .app-layout-tools    { left:   0px; width: 294px; }
+      .app-layout-right > .app-layout-content  { left:    0px; right: 300px; }
+      .app-layout-right > .app-layout-splitter { width:   6px; right: 294px; }
+      .app-layout-right > .app-layout-tools    { width: 294px; right:   0px; }
+      
+      .app-layout-toolbar > .app-layout-content,
+      .app-layout-toolbar > .app-layout-tools {
+        left: 0px; right: 0px;
+      }
+      .app-layout-toolbar > .app-layout-content  { 
+        top: 52px; 
+        bottom: 0px;
+      }
+      .app-layout-toolbar > .app-layout-tools { 
+        top: 0px; 
+        bottom: auto;
+        height: auto;
+        overflow: visible;
+      }
+      .navbar-nocollapse .navbar-header {
+      	float: left;
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+      .navbar-nocollapse > .container-fluid,
+      .navbar-nocollapse > .container {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
+      .navbar-nocollapse > .container-fluid .navbar-brand {
+        margin-left: 0px;
+      }
+      .navbar-nocollapse .navbar-left {
+      	float: left;
+      }
+      .navbar-nocollapse .navbar-right {
+      	float: right;
+      }
+      .navbar-nocollapse .navbar-form {
+        width: auto;
+        border: 0px none;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        box-shadow: none;
+      }
+      .navbar-nocollapse .navbar-form .form-group {
+        display: inline-block;
+        margin-bottom: 0px;
+        vertical-align: middle;
+      }
+      .navbar-nocollapse .navbar-nav {
+        margin: 0px;
+      }
+      .navbar-nocollapse .navbar-nav > li {
+        float: left;
+      }
+      .navbar-nocollapse .navbar-nav > li > a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+      @media (max-width: 768px) {
+        .hidden-noactive-xs { display: none !important; }
+        .active .hidden-noactive-xs { display: block !important; }
+        .hidden-noactive-inline-xs { display: none !important; }
+        .active .hidden-noactive-inline-xs { display: inline !important; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-xs { float: left !important; display: block !important; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-xs > li { display: none; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-xs > li.active { display: block; }
+        .navbar-nocollapse .navbar-toggle { display: block; }
+      }
+      .hidden-else { display: none !important; }
+      @media (max-width: 640px) {
+        .hidden-640  { display: none !important; }
+      	.visible-640-block { display: block !important; }
+      	.visible-640-inline { display: inline !important; }
+        li:not(.active) .hidden-noactive-640 { display: none !important; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-640 { float: left !important; display: block !important; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-640 > li { display: none; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-640 > li.active { display: block; }
+      }
+      @media (max-width: 520px) {
+        .hidden-520  { display: none !important; }
+      	.visible-520-block { display: block !important; }
+      	.visible-520-inline { display: inline !important; }
+        :not(.active) .hidden-noactive-520 { display: none !important; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-520 { float: left !important; display: block !important; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-520 > li { display: none; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-520 > li.active { display: block; }
+      }
+      @media (max-width: 440px) {
+        .hidden-440  { display: none !important; }
+      	.visible-440-block { display: block !important; }
+      	.visible-440-inline { display: inline !important; }
+        :not(.active) .hidden-noactive-440 { display: none !important; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-440 { float: left !important; display: block !important; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-440 > li { display: none; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-440 > li.active { display: block; }
+      }
+      @media (max-width: 360px) {
+        .hidden-360  { display: none !important; }
+      	.visible-360-block { display: block !important; }
+      	.visible-360-inline { display: inline !important; }
+        :not(.active) .hidden-noactive-360 { display: none !important; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-360 { float: left !important; display: block !important; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-360 > li { display: none; }
+        .navbar-nocollapse .navbar-nav.collapse-noactive.hidden-360 > li.active { display: block; }
+      }
+      .app-layout-left>.app-layout-tools .hidden-xs,  .app-layout-right>.app-layout-tools .hidden-xs,
+      .app-layout-left>.app-layout-tools .hidden-640, .app-layout-right>.app-layout-tools .hidden-640,
+      .app-layout-left>.app-layout-tools .hidden-520, .app-layout-right>.app-layout-tools .hidden-520,
+      .app-layout-left>.app-layout-tools .hidden-440, .app-layout-right>.app-layout-tools .hidden-440,
+      .app-layout-left>.app-layout-tools .hidden-360, .app-layout-right>.app-layout-tools .hidden-360
+      { display: none !important; }
+      .app-layout-left>.app-layout-tools .visible-xs-block,  .app-layout-right>.app-layout-tools .visible-xs-block,
+      .app-layout-left>.app-layout-tools .visible-640-block, .app-layout-right>.app-layout-tools .visible-640-block,
+      .app-layout-left>.app-layout-tools .visible-520-block, .app-layout-right>.app-layout-tools .visible-520-block,
+      .app-layout-left>.app-layout-tools .visible-440-block, .app-layout-right>.app-layout-tools .visible-440-block,
+      .app-layout-left>.app-layout-tools .visible-360-block, .app-layout-right>.app-layout-tools .visible-360-block
+      { display: block !important; }
+      .app-layout-left>.app-layout-tools .visible-xs-inline,  .app-layout-right>.app-layout-tools .visible-xs-inline,
+      .app-layout-left>.app-layout-tools .visible-640-inline, .app-layout-right>.app-layout-tools .visible-640-inline,
+      .app-layout-left>.app-layout-tools .visible-520-inline, .app-layout-right>.app-layout-tools .visible-520-inline,
+      .app-layout-left>.app-layout-tools .visible-440-inline, .app-layout-right>.app-layout-tools .visible-440-inline,
+      .app-layout-left>.app-layout-tools .visible-360-inline, .app-layout-right>.app-layout-tools .visible-360-inline
+      { display: inline !important; }
+      .app-layout-right > .app-layout-tools .navbar-nocollapse .navbar-nav.collapse-noactive,
+      .app-layout-left > .app-layout-tools .navbar-nocollapse .navbar-nav.collapse-noactive {
+      	float: left !important; display: block !important;
+      }
+      .app-layout-right > .app-layout-tools .navbar-nocollapse .navbar-nav.collapse-noactive > li,
+      .app-layout-left > .app-layout-tools .navbar-nocollapse .navbar-nav.collapse-noactive > li {
+        display: none;
+      }
+      .app-layout-right > .app-layout-tools .navbar-nocollapse .navbar-nav.collapse-noactive > li.active,
+      .app-layout-left > .app-layout-tools .navbar-nocollapse .navbar-nav.collapse-noactive > li.active {
+        display: block;
+      }
+      .invisible-control {
+        height: 18px;
+        margin: 0px;
+        padding: 0px;
+        background: none;
+        line-height: 1.42857;
+        border: none;
+        vertical-align: top;
+      }
+      .navbar-default .navbar-nav > li > .fakea {
+        color: #777;
+        line-height: 20px; 
+        position: relative;
+        display: block;
+        padding: 15px;
+        cursor: pointer;
+      }
+      .navbar-default .navbar-nav > li > .fakea:focus,
+      .navbar-default .navbar-nav > li > .fakea:hover {
+        color: #333;
+      }
+      .navbar-default .navbar-nav > .active > .fakea, 
+      .navbar-default .navbar-nav > .active > .fakea:hover,
+      .navbar-default .navbar-nav > .active > .fakea:focus {
+        color: #555;
+        background-color: #E7E7E7;
+      }
+      .fakea a:hover, .fakea a:focus, .fakea a {
+      	color: inherit;
+        text-decoration: inherit;
+      }
+    :javascript
+      $(document).ready(function() {
+        $('.app-layout-set').on('click', function(e) {
+          var a = $(e.target);
+          var layout_class = "app-layout-" + a.text().toLowerCase();
+          var layout_tag = a.closest('.app-layout-top,.app-layout-bottom,.app-layout-left,.app-layout-right');
+          layout_tag.removeClass("app-layout-top app-layout-bottom app-layout-left app-layout-right");
+          layout_tag.addClass(layout_class);
+        });
+        $("[data-toggle='tab']").on('click', function(e) {
+          var a = $(this);
+          var target = a.data('target') || a.attr('href');
+          //console.log("tab:" + target);
+          a.tab("show");
+          $("[data-toggle='tab']").
+            filter("[data-target='" + target + "'],[href='" + target + "']").
+              parent('li').addClass('active').end().
+            end().not("[data-target='" + target + "'],[href='" + target + "']").
+              parent('li').removeClass('active');
+          e.stopPropagation();
+        });
+      });
+  %body.app-layout.app-layout-panel.app-layout-bottom
+    .app-layout-content
+      %h1 Content panel
+      %p Hello!
+    .app-layout-splitter
+    .app-layout-tools
+      .app-layout.app-layout-toolbar
+        .app-layout-content.scrolled.tab-content
+          .tab-pane.active#editor-page
+            %h1 Page
+            %p content content content content content content content content content content content content content content content content content content
+            %p content
+            %p content
+            %p content
+            %p content
+            %p content
+            %p content
+          .tab-pane#editor-script
+            %h1 Script
+          .tab-pane#editor-style
+            %h1 Style
+          .tab-pane#editor-insert
+            %h1 Add Content
+          .tab-pane#editor-load
+            %h1 Save/Load
+          .tab-pane#editor-settings
+            %h1 Settings
+            %ul
+              %li.dropdown-header Editor location
+              %li
+                %a.app-layout-set(href="#") Top
+              %li
+                %a.app-layout-set(href="#") Bottom
+              %li
+                %a.app-layout-set(href="#") Left
+              %li
+                %a.app-layout-set(href="#") Right
+              %li.dropdown-header Key bindings
+              %li
+                %a(href="#") Vim
+              %li
+                %a(href="#") Emacs
+          .tab-pane#editor-narrow-nav
+            .container-fluid
+              %ul.nav.nav-pills.nav-stacked
+                %li.active
+                  %a(href="#editor-page" data-toggle="tab")  Page
+                %li
+                  %a(href="#editor-script" data-toggle="tab") Script
+                %li
+                  %a(href="#editor-style" data-toggle="tab") Style
+                %li
+                  %a(href="#editor-insert" data-toggle="tab") Add Contenct
+                %li
+                  %a(href="#editor-load" data-toggle="tab") Save/Load
+                %li
+                  %a(href="#editor-settings" data-toggle="tab") Settings
+        .app-layout-tools
+          .navbar.navbar-default.navbar-nocollapse
+            .container-fluid
+              .navbar-header
+                %a.navbar-brand.hidden-520(href="#") QHaml
+              %button.navbar-toggle.visible-440-block.hidden-else{:type=>:button, :data => {:toggle=>:tab, :target=>"#editor-narrow-nav"}}
+                %span.sr-only Toggle navigation
+                %span.icon-bar
+                %span.icon-bar
+                %span.icon-bar
+              .navbar-form.navbar-right
+                .form-group
+                  %button.form-control.btn.btn-default{:type=>:submit, :title=>"Evaluate Code"}
+                    %span.glyphicon.glyphicon-refresh
+                    %span.hidden-640 Evaluate
+              %ul.nav.navbar-nav.navbar-left.collapse-noactive.hidden-360
+                %li.active
+                  .fakea{:data=>{:target=>"#editor-page", :toggle=>"tab"}, :title=>"Edit page markup"}
+                    %a(href="#") 
+                      %span.glyphicon.glyphicon-file.visible-640-inline.hidden-else
+                      %span.hidden-640 Page
+                    %select.invisible-control.hidden-noactive-inline-xs(name="page-format" title="Select markup language")
+                      %option(selected) HAML
+                      %option HTML
+                %li
+                  .fakea{:data=>{:target=>"#editor-script", :toggle=>"tab"}, :title=>"Edit page script"}
+                    %a(href="#") 
+                      %span.glyphicon.glyphicon-list-alt.visible-640-inline.hidden-else
+                      %span.hidden-640 Script
+                    %select.invisible-control.hidden-noactive-inline-xs(name="script-format" title="Select script language")
+                      %option(selected) OPAL
+                      %option JavaScript
+                %li
+                  .fakea{:data=>{:target=>"#editor-style", :toggle=>"tab"}, :title=>"Edit page style"}
+                    %a(href="#") 
+                      %span.glyphicon.glyphicon-picture.visible-640-inline.hidden-else
+                      %span.hidden-640 Style
+                    %select.invisible-control.hidden-noactive-inline-xs(name="style-format" title="Select styling language")
+                      %option(selected) CSS
+                      %option SCSS
+                      %option LESS
+              %ul.nav.navbar-nav.navbar-right.collapse-noactive.hidden-440
+                %li
+                  %a(href="#editor-load" data-toggle="tab" title="Save/Load")
+                    %span.glyphicon.glyphicon-floppy-disk
+                    %span.hidden-sm.hidden-xs.visible-360-inline Save/Load
+                %li
+                  %a(href="#editor-insert" data-toggle="tab" title="Add")
+                    %span.glyphicon.glyphicon-plus
+                    %span.hidden-sm.hidden-xs.visible-360-inline Add
+                %li
+                  %a(href="#editor-settings" data-toggle="tab" title="Settings")
+                    %span.glyphicon.glyphicon-cog
+                    %span.hidden-sm.hidden-xs.visible-360-inline Settings
+
